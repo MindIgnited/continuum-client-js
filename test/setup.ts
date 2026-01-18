@@ -13,9 +13,7 @@ export async function setup(project: TestProject) {
     if(import.meta.env.VITE_USE_GATEWAY_DOCKER === 'true') {
         console.log('Starting Continuum Gateway')
 
-        const props = getProperties(readFileSync(path.resolve('../../', 'gradle.properties')))
-
-        container = await new GenericContainer(`mindignited/continuum-gateway-server:${props['continuumVersion']}`)
+        container = await new GenericContainer(`mindignited/continuum-gateway-server:2.6.0`)
             .withExposedPorts(58503)
             .withEnvironment({SPRING_PROFILES_ACTIVE: "clienttest"})
             .withPullPolicy(PullPolicy.alwaysPull())

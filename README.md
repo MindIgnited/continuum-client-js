@@ -2,6 +2,8 @@
 
 The Continuum client JavaScript/TypeScript library for connecting to Continuum servers via STOMP over WebSocket.
 
+For full documentation, see the [Continuum Framework Guide](https://mindignited.github.io/continuum-framework/website/guide/clients.html#typescript-javascript-client).
+
 ## Installation
 
 ```bash

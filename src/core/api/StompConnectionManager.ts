@@ -26,18 +26,18 @@ export class StompConnectionManager {
     private initialConnectionSuccessful: boolean = false
     private debugLogger = debug('continuum:stomp')
     private replyToId = uuidv4()
-    public readonly replyToCri =  EventConstants.SERVICE_DESTINATION_PREFIX + this.replyToId + ':' + uuidv4() + '@continuum.js.EventBus/replyHandler'
+    public _replyToCri =  EventConstants.SERVICE_DESTINATION_PREFIX + this.replyToId + ':' + uuidv4() + '@continuum.js.EventBus/replyHandler'
     public deactivationHandler: (() => void) | null = null
 
     /**
      * @return true if this {@link StompConnectionManager} is actively trying to maintain a connection to the Stomp server, false if not.
      */
     public get active(): boolean {
-        if(this.rxStomp){
-            return true
-        }else{
-            return false
-        }
+        return !!this.rxStomp;
+    }
+
+    public get replyToCri(): string {
+        return this._replyToCri
     }
 
     /**
@@ -102,6 +102,7 @@ export class StompConnectionManager {
                     // use replyToId if provided in connectionInfo, otherwise set it
                     if(connectHeadersInternal[EventConstants.REPLY_TO_ID_HEADER]){
                         this.replyToId = connectHeadersInternal[EventConstants.REPLY_TO_ID_HEADER]
+                        this._replyToCri =  EventConstants.SERVICE_DESTINATION_PREFIX + this.replyToId + ':' + uuidv4() + '@continuum.js.EventBus/replyHandler'
                     }else{
                         connectHeadersInternal[EventConstants.REPLY_TO_ID_HEADER] = this.replyToId
                     }

@@ -1,3 +1,5 @@
+![CI](https://github.com/MindIgnited/continuum-client-js/actions/workflows/ci.yml/badge.svg?branch=main)
+
 # Continuum Client
 
 The Continuum client JavaScript/TypeScript library for connecting to Continuum servers via STOMP over WebSocket.

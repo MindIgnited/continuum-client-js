@@ -2,8 +2,6 @@
 import path from 'node:path'
 import {GenericContainer, PullPolicy, StartedTestContainer, Wait} from 'testcontainers'
 import {TestProject} from 'vitest/node.js'
-import { readFileSync } from 'node:fs'
-import { getProperties } from 'properties-file'
 
 let container: StartedTestContainer
 
